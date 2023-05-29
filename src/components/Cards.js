@@ -5,7 +5,7 @@ export default function Cards() {
   const [openedCard, setOpenedCard] = useState([]);
   const [matched, setMatched] = useState([]);
 
-  const pokemons = [
+  const card = [
     { id: 1, name: "balbasaur" },
     { id: 2, name: "wartotle" },
     { id: 3, name: "blastoise" },
@@ -14,16 +14,17 @@ export default function Cards() {
 
   //currently there are 4 pokemons but we need the pair
 
-  const pairOfPokemons = [...pokemons, ...pokemons];
+  const pairOfcards = [...card, ...card];
+
   function flipCard(index) {
     setOpenedCard((opened) => [...opened, index]);
   }
 
   useEffect(() => {
-    if (openedCard < 2) return;
+    if (openedCard < 2) return ;
 
-    const firstMatched = pairOfPokemons[openedCard[0]];
-    const secondMatched = pairOfPokemons[openedCard[1]];
+    const firstMatched = pairOfcards[openedCard[0]];
+    const secondMatched = pairOfcards[openedCard[1]];
 
     if (secondMatched && firstMatched.id === secondMatched.id) {
       setMatched([...matched, firstMatched.id]);
@@ -40,11 +41,11 @@ export default function Cards() {
   return (
     <div>
       <div className="cards">
-        {pairOfPokemons.map((pokemon, index) => {
+        {pairOfcards.map((singlecard, index) => {
           //lets flip the card
           let isFlipped = false;
           if (openedCard.includes(index)) isFlipped = true;
-          if (matched.includes(pokemon.id)) isFlipped = true;
+          if (matched.includes(singlecard.id)) isFlipped = true;
           return (
             <div
               className={`pokemon-card ${isFlipped ? "flipped" : ""} `}
@@ -53,7 +54,7 @@ export default function Cards() {
             >
               <div className="inner">
                 <div className="front">
-                  <div>{pokemon.id}</div>
+                  <div>{singlecard.id}</div>
                 </div>
                 <div className="back"></div>
               </div>

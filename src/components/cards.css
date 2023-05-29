@@ -42,7 +42,7 @@
   }
   
   .pokemon-card .front {
-    background: #fff;
+    background: #e578cb;
     transform: rotateY(180deg);
   }
   
